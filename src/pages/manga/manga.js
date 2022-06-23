@@ -5,6 +5,7 @@ import {LinkContainer} from "react-router-bootstrap";
 import onepiece from '../../ressources/onepiece.jpg';
 import snk from '../../ressources/snk.jpg';
 import vl from '../../ressources/vl.jpg';
+import axios from 'axios';
 
 const Manga = () => {
     const [mangas, setMangas] = useState([]);
@@ -20,14 +21,29 @@ const Manga = () => {
         fetchData();
     }, [])
 
-    const getMangas = async () => {
-        const requestOptions = {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        };
-    }
+    // test de axios
+    // state = {
+    //     mangas: []
+    // }
+    //
+    // componentDidMount()
+    // {
+    //     axios.get(`http://localhost:8080/mangas`)
+    //         .then(res => {
+    //             const mangas = res.data;
+    //             this.setState({ mangas });
+    //         })
+    // }
+
+
+    // const getMangas = async () => {
+    //     const requestOptions = {
+    //         method: "GET",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //     };
+    // }
     return (
         <div>
             <div>
