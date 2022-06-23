@@ -7,7 +7,7 @@ import snk from '../../ressources/snk.jpg';
 import vl from '../../ressources/vl.jpg';
 import axios from 'axios';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
+import {faTrash, faPen} from '@fortawesome/free-solid-svg-icons'
 
 const Manga = () => {
     const [mangas, setMangas] = useState([]);
@@ -59,20 +59,23 @@ const Manga = () => {
             <div>
                 <h2>Manga test api</h2>
                 {mangas.map(manga =>
-                    <Card style={{width: '18rem'}} className="m-4">
-                        <Card.Img variant="top" src={onepiece}/>
-                        <Card.Body>
-                            <Card.Title>{manga.title}</Card.Title>
-                            <Card.Text>
-                                L'auteur est {manga.author} et l'éditeur est {manga.editor}
-                            </Card.Text>
-                            <LinkContainer to="/mangaDetail">
-                                <Button variant="primary">Go somewhere</Button>
-                                <Button variant="warning"><FontAwesomeIcon icon={faPen} /></Button>
-                                <Button onClick={deleteManga} variant="danger"><FontAwesomeIcon icon={faTrash} /></Button>
-                            </LinkContainer>
-                        </Card.Body>
-                    </Card>
+                    <div key={manga.id}>
+                        <Card style={{width: '18rem'}} className="m-4">
+                            <Card.Img variant="top" src={onepiece}/>
+                            <Card.Body>
+                                <Card.Title>{manga.title}</Card.Title>
+                                <Card.Text>
+                                    L'auteur est {manga.author} et l'éditeur est {manga.editor}
+                                </Card.Text>
+                                <LinkContainer to="/mangaDetail">
+                                    <Button variant="primary">Go somewhere</Button>
+                                    <Button variant="warning"><FontAwesomeIcon icon={faPen}/></Button>
+                                    <Button onClick={deleteManga} variant="danger"><FontAwesomeIcon
+                                        icon={faTrash}/></Button>
+                                </LinkContainer>
+                            </Card.Body>
+                        </Card>
+                    </div>
                 )}
             </div>
             <div className="p-4 row">
@@ -109,8 +112,8 @@ const Manga = () => {
                             the card's content.
                         </Card.Text>
                         <Button variant="primary">Go somewhere</Button>
-                        <Button variant="warning"><FontAwesomeIcon icon={faPen} /></Button>
-                        <Button variant="danger"><FontAwesomeIcon icon={faTrash} /></Button>
+                        <Button variant="warning"><FontAwesomeIcon icon={faPen}/></Button>
+                        <Button variant="danger"><FontAwesomeIcon icon={faTrash}/></Button>
                     </Card.Body>
                 </Card>
             </div>
