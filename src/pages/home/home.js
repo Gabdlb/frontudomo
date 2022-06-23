@@ -7,6 +7,7 @@ import {Button, Card, Container, Nav, Navbar} from "react-bootstrap";
 function Home() {
     return (
         <div>
+            <h2>Test deply CI/CD</h2>
             <div className="p-4 row">
                 <Card style={{width: '18rem'}} className="m-4">
                     <Card.Img variant="top" src={Udomo2}/>
