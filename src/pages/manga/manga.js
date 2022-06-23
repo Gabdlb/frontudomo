@@ -6,10 +6,13 @@ import onepiece from '../../ressources/onepiece.jpg';
 import snk from '../../ressources/snk.jpg';
 import vl from '../../ressources/vl.jpg';
 import axios from 'axios';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 
 const Manga = () => {
     const [mangas, setMangas] = useState([]);
 
+    //get
     useEffect(() => {
         const fetchData = async () => {
             const result = await fetch('http://localhost:8080/mangas')
@@ -44,6 +47,13 @@ const Manga = () => {
     //         },
     //     };
     // }
+
+    //DELETE
+    const deleteManga = async (res) => {
+        const response = await axios.delete('http://localhost:8080/mangas/${id}');
+        return res.json(response);
+    };
+
     return (
         <div>
             <div>
@@ -58,6 +68,8 @@ const Manga = () => {
                             </Card.Text>
                             <LinkContainer to="/mangaDetail">
                                 <Button variant="primary">Go somewhere</Button>
+                                <Button variant="warning"><FontAwesomeIcon icon={faPen} /></Button>
+                                <Button onClick={deleteManga} variant="danger"><FontAwesomeIcon icon={faTrash} /></Button>
                             </LinkContainer>
                         </Card.Body>
                     </Card>
@@ -97,6 +109,8 @@ const Manga = () => {
                             the card's content.
                         </Card.Text>
                         <Button variant="primary">Go somewhere</Button>
+                        <Button variant="warning"><FontAwesomeIcon icon={faPen} /></Button>
+                        <Button variant="danger"><FontAwesomeIcon icon={faTrash} /></Button>
                     </Card.Body>
                 </Card>
             </div>
