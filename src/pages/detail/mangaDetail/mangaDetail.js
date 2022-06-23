@@ -19,7 +19,7 @@ const MangaDetail = () => {
     return (
         <div className="App">
             {mangas.map(manga =>
-                <section className="section-content padding-y">
+                <section key={manga.id} className="section-content padding-y">
                     <div className="container">
 
                         <div className="row">
