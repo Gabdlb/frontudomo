@@ -68,7 +68,9 @@ const Manga = () => {
                                     L'auteur est {manga.author} et l'éditeur est {manga.editor}
                                 </Card.Text>
                                 <LinkContainer to="/mangaDetail">
-                                    <Button variant="primary">Go somewhere</Button>
+                                    <LinkContainer to="/mangaDetail">
+                                        <Button variant="primary">Voir</Button>
+                                    </LinkContainer>
                                     <Button variant="warning"><FontAwesomeIcon icon={faPen}/></Button>
                                     <Button onClick={deleteManga} variant="danger"><FontAwesomeIcon
                                         icon={faTrash}/></Button>
