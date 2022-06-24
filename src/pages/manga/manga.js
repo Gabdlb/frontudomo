@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import './manga.css'
 import {Button, Card, Nav} from "react-bootstrap";
 import {LinkContainer} from "react-router-bootstrap";
@@ -9,118 +9,57 @@ import axios from 'axios';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash, faPen} from '@fortawesome/free-solid-svg-icons'
 
+
+// const api = axios.create({
+//     baseURL: 'http://localhost/'
+// })
+
 const Manga = () => {
     const [mangas, setMangas] = useState([]);
 
     //get
     useEffect(() => {
         const fetchData = async () => {
-            const result = await fetch('http://localhost:8080/mangas')
+            const result = await fetch('http://localhost/mangas')
             const jsonResult = await result.json()
-
+            console.log(jsonResult)
             setMangas(jsonResult)
+
         }
 
         fetchData();
     }, [])
 
-    // test de axios
-    // state = {
-    //     mangas: []
-    // }
-    //
-    // componentDidMount()
-    // {
-    //     axios.get(`http://localhost:8080/mangas`)
-    //         .then(res => {
-    //             const mangas = res.data;
-    //             this.setState({ mangas });
-    //         })
-    // }
-
-
-    // const getMangas = async () => {
-    //     const requestOptions = {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //     };
-    // }
 
     //DELETE
-    const deleteManga = async (res) => {
-        const response = await axios.delete('http://localhost:8080/mangas/${id}');
-        return res.json(response);
-    };
+    // const deleteManga = async (res) => {
+    //     const response = await axios.delete('http://localhost:8080/mangas/${id}');
+    //     return res.json(response);
+    // };
 
+    //render() {
     return (
         <div>
             <div>
                 <h2>Manga test api</h2>
-                {mangas.map(manga =>
-                    <div key={manga.id}>
-                        <Card style={{width: '18rem'}} className="m-4">
+                <div className="p-4 row">
+                    {mangas.map(manga =>
+                        <Card key={manga.idManga} style={{width: '18rem'}} className="m-4">
                             <Card.Img variant="top" src={onepiece}/>
                             <Card.Body>
                                 <Card.Title>{manga.title}</Card.Title>
                                 <Card.Text>
                                     L'auteur est {manga.author} et l'éditeur est {manga.editor}
                                 </Card.Text>
-                                <LinkContainer to="/mangaDetail">
-                                    <LinkContainer to="/mangaDetail">
-                                        <Button variant="primary">Voir</Button>
-                                    </LinkContainer>
-                                    <Button variant="warning"><FontAwesomeIcon icon={faPen}/></Button>
-                                    <Button onClick={deleteManga} variant="danger"><FontAwesomeIcon
-                                        icon={faTrash}/></Button>
-                                </LinkContainer>
                             </Card.Body>
                         </Card>
-                    </div>
-                )}
-            </div>
-            <div className="p-4 row">
-                <Card style={{width: '18rem'}} className="m-4">
-                    <Card.Img variant="top" src={onepiece}/>
-                    <Card.Body>
-                        <Card.Title>Card Title</Card.Title>
-                        <Card.Text>
-                            Some quick example text to build on the card title and make up the bulk of
-                            the card's content.
-                        </Card.Text>
-                        <LinkContainer to="/mangaDetail">
-                            <Button variant="primary">Go somewhere</Button>
-                        </LinkContainer>
-                    </Card.Body>
-                </Card>
-                <Card style={{width: '18rem'}} className="m-4">
-                    <Card.Img variant="top" src={snk}/>
-                    <Card.Body>
-                        <Card.Title>Card Title</Card.Title>
-                        <Card.Text>
-                            Some quick example text to build on the card title and make up the bulk of
-                            the card's content.
-                        </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
-                    </Card.Body>
-                </Card>
-                <Card style={{width: '18rem'}} className="m-4">
-                    <Card.Img variant="top" src={vl}/>
-                    <Card.Body>
-                        <Card.Title>Card Title</Card.Title>
-                        <Card.Text>
-                            Some quick example text to build on the card title and make up the bulk of
-                            the card's content.
-                        </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
-                        <Button variant="warning"><FontAwesomeIcon icon={faPen}/></Button>
-                        <Button variant="danger"><FontAwesomeIcon icon={faTrash}/></Button>
-                    </Card.Body>
-                </Card>
+                    )}
+                </div>
             </div>
         </div>
+
     );
-};
+}
+//}
 
 export default Manga;

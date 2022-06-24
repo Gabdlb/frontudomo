@@ -11,7 +11,7 @@ function Admin() {
     const submitManga = async (e) => {
         e.preventDefault()
         const manga = {title, author, editor};
-        await fetch('http://localhost:8080/mangas', {
+        await fetch('http://localhost/mangas', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ function Admin() {
     return (
         <div>
             <h1>Ajout d'un manga</h1>
-            <form onSubmit={submitManga}>
+            <form>
                 <Form>
                     <Form.Group className="mb-3">
                         <Form.Label>Titre</Form.Label>

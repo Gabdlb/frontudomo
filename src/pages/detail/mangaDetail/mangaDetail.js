@@ -1,6 +1,5 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import onepiece from "../../../ressources/onepiece.jpg";
-import {useEffect, useState} from "@types/react";
 
 const MangaDetail = () => {
     const [mangas, setMangas] = useState([]);
