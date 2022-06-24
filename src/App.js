@@ -10,6 +10,7 @@ import Login from "./pages/login/login"
 import Signup from "./pages/signup/signup";
 import MangaDetail from "./pages/detail/mangaDetail/mangaDetail";
 import Admin from "./pages/admin/admin"
+import EditManga from "./pages/edit/manga/editManga";
 import {Routes} from "react-router";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/mangaDetail" element={<MangaDetail />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/edit" element={<EditManga />} />
             </Routes>
 
         </Router>

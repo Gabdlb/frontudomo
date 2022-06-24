@@ -7,7 +7,8 @@ import snk from '../../ressources/snk.jpg';
 import vl from '../../ressources/vl.jpg';
 import axios from 'axios';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTrash, faPen} from '@fortawesome/free-solid-svg-icons'
+import {faTrash, faPen, faEye} from '@fortawesome/free-solid-svg-icons'
+import {useNavigate} from "react-router-dom";
 
 
 // const api = axios.create({
@@ -15,6 +16,7 @@ import {faTrash, faPen} from '@fortawesome/free-solid-svg-icons'
 // })
 
 const Manga = () => {
+    const navigate = useNavigate()
     const [mangas, setMangas] = useState([]);
 
     //get
@@ -32,12 +34,26 @@ const Manga = () => {
 
 
     //DELETE
-    // const deleteManga = async (res) => {
-    //     const response = await axios.delete('http://localhost:8080/mangas/${id}');
-    //     return res.json(response);
-    // };
+    const deleteManga = async (res, idManga) => {
+        const response = await axios.delete('http://localhost/mangas/' + {idManga});
+        return res.json(response);
+    };
 
-    //render() {
+    const seeManga = async () => {
+        navigate('/mangaDetail');
+    }
+    const editManga = async () => {
+        navigate('/edit');
+    }
+
+    async function deleteM(id) {
+        let result = await fetch('http://localhost/mangas/' + id, {
+            method: 'DELETE'
+        });
+        result = await result.json()
+        console.warn(result);
+    }
+
     return (
         <div>
             <div>
@@ -51,6 +67,9 @@ const Manga = () => {
                                 <Card.Text>
                                     L'auteur est {manga.author} et l'éditeur est {manga.editor}
                                 </Card.Text>
+                                <Button onClick={seeManga} variant="primary"><FontAwesomeIcon icon={faEye}/></Button>
+                                <Button onClick={editManga} variant="warning"><FontAwesomeIcon icon={faPen}/></Button>
+                                <Button onClick={deleteM} variant="danger"><FontAwesomeIcon icon={faTrash}/></Button>
                             </Card.Body>
                         </Card>
                     )}
@@ -60,6 +79,5 @@ const Manga = () => {
 
     );
 }
-//}
 
 export default Manga;

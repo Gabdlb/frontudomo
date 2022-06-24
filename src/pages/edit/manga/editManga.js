@@ -1,15 +1,26 @@
-import React, {useState} from 'react';
-import './admin.css';
+import React, {useState, useEffect} from 'react';
 import {Button, Card, Container, Form, Nav, Navbar} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 
-function Admin() {
+function EditManga() {
     const navigate = useNavigate();
 
     const [mangas, setMangas] = useState([]);
     const [title, setTitle] = useState([]);
     const [author, setAuthor] = useState([]);
     const [editor, setEditor] = useState([]);
+
+
+    //get
+    useEffect(() => {
+        const fetchData = async (params) => {
+            const result = await fetch('http://localhost/mangas')
+            const jsonResult = await result.json()
+            console.log(jsonResult)
+            setMangas(jsonResult)
+        }
+        fetchData();
+    }, [])
 
     const submitManga = async (e) => {
         e.preventDefault()
@@ -26,22 +37,22 @@ function Admin() {
     }
     return (
         <div>
-            <h1>Ajout d'un manga</h1>
-            <form>
+            <h1>Modifier le manga</h1>
+            <form key={mangas.idManga}>
                 <Form>
                     <Form.Group className="mb-3">
                         <Form.Label>Titre</Form.Label>
-                        <Form.Control placeholder="Titre du manga" value={title} onChange={(e) => setTitle(e.target.value)}/>
+                        <Form.Control placeholder="Titre du manga" value={mangas.title} onChange={(e) => setTitle(e.target.value)}/>
                     </Form.Group>
 
                     <Form.Group className="mb-3">
                         <Form.Label>Auteur</Form.Label>
-                        <Form.Control placeholder="Auteur du manga" value={author} onChange={(e) => setAuthor(e.target.value)}/>
+                        <Form.Control placeholder="Auteur du manga" value={mangas.author} onChange={(e) => setAuthor(e.target.value)}/>
                     </Form.Group>
 
                     <Form.Group className="mb-3">
                         <Form.Label>Editeur</Form.Label>
-                        <Form.Control placeholder="Editeur du manga" value={editor} onChange={(e) => setEditor(e.target.value)}/>
+                        <Form.Control placeholder="Editeur du manga" value={mangas.editor} onChange={(e) => setEditor(e.target.value)}/>
                     </Form.Group>
 
                     <Button onClick={submitManga} variant="primary" type="submit">
@@ -53,4 +64,4 @@ function Admin() {
     );
 }
 
-export default Admin;
+export default EditManga;
